@@ -15,12 +15,11 @@ import android.widget.Button;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
-
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String ProjectName = "qsosender";
+    public static final String ProjectName = "qsosender2";
     public static Boolean DEBUG = false;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.

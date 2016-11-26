@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 17
+    compileSdkVersion 23
     buildToolsVersion "23.0.3"
     defaultConfig {
         applicationId "com.cebess.qsosender2"
@@ -17,6 +17,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             debuggable false
             jniDebuggable false
+        }
+        debug {
+            debuggable true
+            jniDebuggable true
         }
     }
     productFlavors {
