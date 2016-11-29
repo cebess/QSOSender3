@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        signedConfig {
+            keyAlias 'myAndroidKey'
+            keyPassword '!QAZ0okm'
+            storeFile file('G:/users/chasb/AndroidStudioProjects/KeyStore.jks')
+            storePassword '!QAZ0okm'
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
     defaultConfig {
@@ -13,14 +21,16 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             debuggable false
             jniDebuggable false
+            signingConfig signingConfigs.signedConfig
         }
         debug {
             debuggable true
             jniDebuggable true
+            signingConfig signingConfigs.signedConfig
         }
     }
     productFlavors {
