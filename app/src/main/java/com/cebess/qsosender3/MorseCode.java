@@ -1,12 +1,10 @@
-package com.cebess.qsosender2;
+package com.cebess.qsosender3;
 
 /**
  * Created by chasb on 11/26/2016.
  */
 
 import java.util.*;
-import java.net.*;
-import java.io.*;
 
 /**
  * MorseCode holds a Morse Code character to synthesize.<p>
@@ -110,24 +108,7 @@ public class MorseCode
             new MorseCode('#', "# SK", "...-.-"     ),  /* End of work == SK    */
             new MorseCode(' ', "  SP", ""           ),  /* Space                */
 
- /*
-  * The following symbols are not in the U.S. character set.
-  * A better solution would be to add character class info. This
-  * would permit adding Hirigana/Katagana or other national
-  * character sets.
-  */
- /*
-        new MorseCode('\u00C4', ".-.-"  ),      // A-dieresis
-        new MorseCode('\u00C5', ".--.-" ),      // A-ring
-        new MorseCode('\u00C7', "-.-.." ),      // C-cedilla
-        new MorseCode('\u00C8', ".-..-" ),      // E-grave
-        new MorseCode('\u00C9', "..-.." ),      // E-acute
-        new MorseCode('\u00CA', "-..-." ),      // E-circumflex
-        new MorseCode('\u00D6', "---."  ),      // O-dieresis
-        new MorseCode('\u00D1', "--.--" ),      // N-tilde
-        new MorseCode('\u00FC', "..--"  ),      // U-dieresis
-        new MorseCode('\u00DF', "----"  ),      // CH, S-cedilla ?
- */
+
     };
     /**
      * The MorseCode space character is needed elsewhere.

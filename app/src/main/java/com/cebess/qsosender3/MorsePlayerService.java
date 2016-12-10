@@ -1,20 +1,24 @@
-package com.cebess.qsosender2;
+package com.cebess.qsosender3;
 
 /**
  * Created by chasb on 11/26/2016.
  */
+import android.app.Service;
 import android.util.Log;
 import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioTrack;
+import android.app.IntentService;
+import android.content.Intent;
+
 
 /* A bunch of this wave-generating code is copied from
  * http://marblemice.blogspot.com/2010/04/generate-and-play-tone-in-android.html
  * though I had to fix a bugger length problem.
  */
 
-public class MorsePlayer {
-    private String TAG = "MorsePlayer";
+public class MorsePlayerService extends IntentService {
+    private String TAG = "MorsePlayerService";
     private final int SAMPLE_RATE = 8000;
     private double duration;  // in seconds
     private int wpmSpeed;
@@ -29,12 +33,30 @@ public class MorsePlayer {
     private String currentMessage;  // message to play in morse
 
     // Constructor: prepare to play morse code at SPEED wpm and HERTZ frequency
-
-    public MorsePlayer(int hertz, int speed) {
-        setSpeed(speed);
-        setTone(hertz);
-        buildSounds();
+    public MorsePlayerService() {
+        super("MorsePlayerServiceName");
     }
+
+    //   public MorsePlayerService(int hertz, int speed) {
+    //       setSpeed(speed);
+    //       setTone(hertz);
+    //       buildSounds();
+    //   }
+    @Override
+    protected void onHandleIntent(Intent intent) {
+
+        String myMessage = intent.getStringExtra("message");
+
+        if (null == myMessage) {
+            myMessage = "no message";
+        }
+        setMessage(myMessage);
+        setTone(intent.getIntExtra("tone",1000));
+        setSpeed(intent.getIntExtra("speed",13));
+        buildSounds();
+        playMorse();
+    }
+
     // Generate 'dit','dah' and empty sinewave tones of the proper lengths.
     private void buildSounds() {
         // where (1200 / wpm) = element length in milliseconds
@@ -72,7 +94,16 @@ public class MorsePlayer {
         }
     }
 
-    public void setMessage(String message) {
+    @Override
+    public void onDestroy()
+    {
+        Log.i(TAG, "destroying Morse Player Service...");
+        signaler.audioTrack.flush();
+        signaler.audioTrack.stop();
+        super.onDestroy();
+    }
+
+    private void setMessage(String message) {
         currentMessage = message;
     }
 

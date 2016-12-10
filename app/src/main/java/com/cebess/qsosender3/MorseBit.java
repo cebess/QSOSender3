@@ -1,4 +1,4 @@
-package com.cebess.qsosender2;
+package com.cebess.qsosender3;
 
 /*
  * Copyright (C) 2011 Ben Collins-Sussman

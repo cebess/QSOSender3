@@ -1,4 +1,4 @@
-package com.cebess.qsosender2;
+package com.cebess.qsosender3;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
